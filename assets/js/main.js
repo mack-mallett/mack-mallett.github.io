@@ -118,7 +118,11 @@
 		});
 
 	// Scrolly.
-		$('.scrolly').scrolly();
+		// $('.scrolly').scrolly();
+		$('.scrolly').scrolly({
+    		speed: 1500,
+    		offset: $header.outerHeight()
+		});
 
 	// Background.
 		$wrapper._parallax(0.925);
