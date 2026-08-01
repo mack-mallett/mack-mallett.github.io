@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Mackenzie Mallett's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Mackenzie Mallett's Portfolio</h1>
+						<p>A showcase of my work practicing and writing about data science.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">About Me</a></li>
+							<li class="active"><a href="projects.html">Projects</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://linkedin.com/in/mackenzie-mallett-9b08a9150/" target = "_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/mack-mallett" target = "_blank" class="icon brands fa-github"><span target = "_blank" class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>My Work</h1>
+									<!-- <p>Unsupervised Machine Learning<br />
+										Distributed Computing<br />
+										Incorporating ML and AI into existing software and data reporting systems.<br />
+										Graph Theory and Graph Analysis Techniques</p> -->
+										<ul class="actions special">
+											<li><a href="#Dist_Sys" class="scrolly button">Distributed Systems</a></li>
+										<!-- <li><a href="#NN_WF" class="scrolly button">Neural Networks</a></li> -->
+										<!-- <li><a href="#NN_WF" class="scrolly button">Wildfire Insights</a></li> -->
+										<li><a href="#NLP" class="scrolly button">Natural Language Processing</a></li>
+										<!-- <li><a href="#Education" class="scrolly button">Natural Language Processing</a></li> -->
+									</ul>
+									<p>Check out these stories describing some of my favorite projects! </p>
+								</header>
+							</section>
+
+					</div>
+					<div id="main">
+
+						<!-- Post -->
+						<section class="post">
+							<header class="major">
+								<span class="date">July 31, 2026</span>
+								<h3 id="Dist_Sys">Distributed Computing Systems for Massive Datasets</a></h3>
+							</header>
+							<p><i>If you're interested in checking out the final implementation of this project, check it out on my <a href="https://github.com/mack-mallett/Implementing-CASS-in-PySpark/tree/main" target="#">Github.</a></i><br /><br />
+							When I went back to school I took a course called Systems for Massive Datasets. As a final project, I worked with some colleagues 
+									to implement a community detection algorithm called <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0203670" target = "#">CASS</a>
+									 on a distributed computing system. CASS is a community detection algorithm which is specifically designed to run on a distributed 
+									 computing cluster. One of the reasons I was attracted to this paper was my own experience using community detection to identify 
+									 patterns in seemingly unrelated IT tickets.<br /><br />
+
+									In graph theory, a graph is a network of vertices. When two vertices are connected, we say there is an edge. For example, each user 
+									of a social media platform might be represented by a vertex, and a connection between two users is represented by an edge. We can
+									 make graphs quite detailed by labeling the vertices and edges, or giving them weights, but in this post I’m going to be referring 
+									 to simple, undirected graphs. In this context, community detection is the problem of finding groups of vertices which share more edges
+									  with each other than they do with vertices in other communities. <br /><br />
+
+									Unfortunately, the community detection problem doesn’t lend itself well to distributed computing. Software for distributed systems, 
+									like Apache Spark and PySpark, spread large datasets across computing clusters with Resilient Distributed Datasets (RDDs). RDDs 
+									spread massive datasets by splitting them into Partitions and sending partitions to individual compute nodes to execute a slice of 
+									the required computations. Computations on Partitions can be a transformation or an action. Transformations are typically functions
+									for reshaping data, like a mapping or a filter. They’re important, but until you need to do some calculation it’s enough to just state 
+									that the data will be transformed in this way. This saves the system making unnecessary calls to solid state memory, which incur a
+									 communication cost every time they happen. Actions perform some calculation with the data, and are executed in the RAM of the compute 
+									 node the moment they’re called. All the transformations on each partition are stored in a flowchart called a Directed Acyclic Graph
+									  (DAG). When a result is needed, the individual computations on each Partition can be unwound and combined together. <br /><br />
+
+									Distributed systems are fantastic, especially when each row is independent from all the other rows and features are identically
+									 distributed across the whole dataset. With independent, identically distributed data (i.i.d data), each Partition is an independent, 
+									 representative sample of the whole dataset. But, in a community detection problem we are examining an edge list to find bunches of 
+									 vertices where edges are more dense. What would happen if the RDD partitioned the edge list right in the middle of a community of 
+									 vertices? Each compute node could identify a separate community, or worse, fold the split communities into a nearby community.
+									  This would significantly reduce the accuracy of the results. This is a risk with other datasets where i.i.d doesn’t hold, like 
+									  non-stationary processes that evolve over time, or non-ergodic processes where different initial conditions cause systems to diverge
+									   over time.<br /><br />
+
+									It’s because of this problem that many cutting edge community detection algorithms are designed to run on a single CPU. Even with an
+									 exceptionally powerful chip, this isn’t scalable to the massive datasets which we observe in nature. CASS is interesting because it’s 
+									 intentionally designed to perform community detection in a distributed environment. It does this by calculating a similarity score 
+									 through two database style JOIN operations, and realizes optimizations through a Bloom Filter.<br /><br />
+
+									Computing clusters are not necessarily easy to acquire, especially on a student budget. While I procured an appropriate computing 
+									solution for this project, my colleagues built a prototype implementation designed to run in Google Colab. Google Colab makes it 
+									possible to access a single, high powered, CPU for prototyping. With both steps done, we believed it would be a simple task to run the 
+									implementation on the cluster I had set up in DataProc, which sits on top of Google Cloud Storage. The algorithm would be evaluated 
+									on four real-world graphs of increasing size, which were successfully processed in Google Colab on the prototype implementation. <br /><br />
+
+									On the distributed cluster the algorithm was great at processing small datasets. However, I found that the third dataset would experience
+									 a server connection error that crashed the notebook kernel. Knowing that this algorithm performed reasonably with a single machine, 
+									 I decided to look for answers in the cluster diagnostics. I found them in the YARN memory manager, in the form of an Out of Memory 
+									 (OOM) error.<br /><br />
+
+									The YARN memory manager is a feature of Apache Spark (and by extension PySpark) that prevents a calculation from exceeding the RAM of any
+									 individual node in the cluster. If the system tries to assign more data to a node than it can handle, YARN will shut down the system 
+									 to avoid system failure. My diagnostics showed that allocated memory had risen sharply, and plateaued at the top, while CPU 
+									 utilization followed a pattern of sharp peaks and valleys. In Apache Spark, this pattern indicates that the problematic bottleneck 
+									 is in shuffling data around, rather than in complex calculations. This can be reduced somewhat by increasing the length of the
+									  timeout timer and reducing the size of partitions, but these optimizations don’t scale, and I still had an even larger dataset to
+									   process.<br /><br />
+
+									CASS finds communities through two JOIN operations. On each join, data from each Partition has to be shuffled around the network to find
+									 associated keys. This incurs a communication cost, which Apache Spark reduces by only executing transformations when an action is 
+									 called. This is great in theory, but if the data being shuffled gets too large, or if a compute node fills up with internal data 
+									 structures, then the node cannot receive a data packet, and the YARN memory manager will time out. In our prototype, everything 
+									 happened on a single chip, with virtual partitioning. Data packets created by one partition of a single chip cannot exceed the memory 
+									 of the whole chip, and so shuffling can’t crash the single node system, only slow it down. To get CASS to run on a distributed 
+									 cluster, I would have to change how our implementation managed packets of data.<br /><br />
+
+									CASS already reduces unnecessary shuffling with a technique called shuffle selection, and a tool called a Bloom Filter. During JOIN’s, 
+									edges which share the same vertex are joined together. If a vertex has many edges, also called a high degree vertex, then many data 
+									packets from Partitions across the network have to be shuffled to meet at this compute node. Shuffle selection reduces this by 
+									orienting the JOIN to prioritize low degree vertices. Bloom Filters are a probabilistic structure which carries no risk of false 
+									negatives. However, each compute node needs its own copy of the Bloom Filter for each iteration of the algorithm, which takes up
+									 precious RAM. To avoid the OOM errors, I used <code>.unpersist()</code> to discard unused filters and free up memory for new data packets.<br /><br />
+
+									JOIN operations are a transformation in Apache Spark, which means that they are left unexecuted until the RDD is needed for some action.
+									 This greatly saves on the amount of memory needed across the system. But, it can create a bottleneck if a large RDD with an 
+									 un-executed transformation is needed. To do the calculation, the compute node will need to first construct and store the RDD, which 
+									 might fill up all the memory needed for the actual calculation. This can be prevented by caching, and then performing an action on,
+									  and RDD. To mitigate the trade off of computing an action just for the RDD to be available, I used a “for each value do nothing” 
+									  style statement.<br />
+									<code>rdd.cache()</code><br />
+									<code>rdd.foreach(lambda x: None)</code><br /><br />
+
+									Modifying the prototype to work at scale may have had simple solutions, but it was an over many nights process. I’m big on sleep (it’s 
+									healthy!), but I found myself so invested in this project that I would catch myself checking the cluster diagnostics late at night, 
+									checking for crashes and making changes if necessary. I was learning a ton about distributed computing, and moving prototypes closer 
+									to a production environment. <br /><br />
+
+									A few days before the deadline, I woke up to a truly welcome surprise. After days of battling with the YARN memory manager, CASS had
+									 successfully worked its way through all four datasets. Even better, it had done so accurately. On smaller datasets, the processing 
+									 speedup was negligible, but on the largest dataset, CASS had found communities 46% faster than on the single chip prototype. This 
+									 result confirms that by designing methods with distributed environments in mind, it’s possible to efficiently and accurately perform
+									 tasks like community detection.<br />
+									 <div class="image main"><img src="images/CASS_Results.png" alt="" /></div>
+								</p>
+							</section>
+
+							<section class="post">
+								<header class="major">
+									<span class="date">July 31, 2026</span>
+									<h3 id="NLP">NLP and Me - How Learning the Tools to Analyze Unstructured Text Data Shaped My Early Career</a></h3>
+								</header>
+								<p>In many ways, Natural Language Processing (NLP) defined the early stages of my data science career. 
+									My first job out of my undergraduate program was as a marketing specialist for a boutique data science consultancy, which, 
+									at the time, specialized in deriving insights from written survey responses using NLP techniques. The addressable market for a firm 
+									like this is quite sophisticated, and potential clients expect anyone representing the firm to understand how the service works. 
+									It was out of this need that I started researching NLP techniques and how to apply them. These clever systems for finding patterns 
+									in unstructured data kindled the spark of interest, and I would spend the next five years learning to use these techniques in my own 
+									work. The firm I worked for has grown and since pivoted their marketing strategy, but anyone looking for a beginners guide to NLP 
+									pipelines can read an archive of my work on the 
+									   <a href="https://web.archive.org/web/20220523015500/https://www.kaianalytics.com/post/how-to-use-text-analysis-techniques-bring-qualitative-data-to-life" target = "#">Wayback Machine.</a><br /><br />
+									   
+									   During the five years I spent learning the technical basics of machine learning I also experimented with careers in a variety of 
+									   business verticals. These experiences shaped my work ethic, and broadened my perspectives on engineering, property development,
+									    finance, and government. I learned how to solve business problems, sometimes with technical solutions, but more often with healthy
+										 teams, strong relationships, and careful attention to the right details. But, as much as I was learning, I found that I was always
+										  searching for opportunities to get back into the world of Data Science, but this time as a practitioner.  <br /><br />
+									   
+									   One day the opportunity I had been waiting for appeared in my inbox. A team in British Columbia’s Ministry of Citizen Services, 
+									   which hosts the Office of the Chief Information Officer (Now Connected Services BC), was looking for a data analyst who could analyze
+									    unstructured text data, and apply those insights to drive organizational change. It felt like the posting was written for me 
+										personally. I competed for the role, and was rewarded with the position.  <br /><br />
+									   
+									   This role was transformational for me. The team I joined was genuinely interested in growing the role of data science in the ministry
+									   , and using findings as a catalyst to improve the service experience of our clients across government. Our main source of fresh 
+									   insights would come from unstructured text data and our ability to package these insights as effective decision making tools would 
+									   define our success as a team. <br /><br />
+										
+										I felt this was the perfect problem for NLP and text analysis techniques. I was extremely lucky, my team members and my boss took a
+										 risk on me, and gave me the freedom to experiment and to learn.  <br /><br />
+										
+										The principal NLP technique I used in this role was topic modelling. Topic modelling is an NLP term for unsupervised clustering 
+										techniques applied specifically to text data. This technique allows analysts to segment collections of documents based on semantic
+										 similarity. Segments are then reviewed by an analyst, or an LLM, to derive the key themes of that segment. Topic modelling is
+										  especially powerful when analyzing thousands or hundreds of thousands of chunks of text, like the kind you get from feedback 
+										  surveys or technician notes. <br /><br />
+
+										One of the most popular topic modelling libraries for Python is 
+										<a href="https://maartengr.github.io/BERTopic/algorithm/algorithm.html" target = "#">BERTopic</a>, 
+										 and the general pipeline goes something like this: <br />
+										<ol>
+											<li>Chunks of text are vectorized using a transformer. This could be an open source model like BERT, or a more specialized model
+												 from Hugging Face, or it could be a proprietary model specifically trained on an organization's documents.  </li>
+											<li>Obligatory dimensionality reduction. Natural language in particular can have enormous feature sets, called vocabularies. 
+												These vocabularies will invoke the curse of dimensionality if left unchecked.  </li>
+											<li>An unsupervised clustering algorithm. There are many choices for this, but common algorithms include K-Means, density based 
+												clustering algorithms, and hierarchical based clustering. BERTopic uses an algorithm called HDBSCAN (Hierarchical Density
+												 Based Spatial Clustering of Applications with Noise), which allows for clusters of varying densities. </li>
+											<li>Transforming the clusters back into natural language so they can be interpreted. This involves building a vocabulary for
+												 each cluster, and determining which words are the most representative of that cluster.</li>
+										</ol>
+										This project reignited my passion for learning. The pipeline came as a complete package, but I still researched every step. I found
+										myself comparing clustering techniques, and felt the satisfaction of understanding why getting clusters of varying densities from
+										 HDBSCAN is useful.<br /><br />
+										
+										Data Science isn’t useful unless people use it. If my team wanted the service delivery teams to consider our findings then we needed
+										 those findings to be accessible to leaders at their leisure. In our ministry PowerBI was the common format for this. As a 
+										 visualization platform PowerBI supports some minor data transformations, but nothing at the scale needed to host a topic modelling 
+										 algorithm. PowerBI is best when it sits on top of cloud compute (like Azure or AWS), but as a small team we didn’t have access to 
+										 those resources. To solve this problem, and get our insights on the screens of team leaders, I took on a new challenge of designing
+										  and implementing a fully connected data pipeline native to the resources we actually had. <br /><br />
+
+										This project became the vehicle for some of the most important learning I would do in this early stage of my career. The design had 
+										to meet specific requirements, specifically ingesting data from an SQL server, processing unstructured text, computing topics, and
+										 serving these topics up to the existing dashboard ecosystem. Since our goal was to use these insights to secure the resources for a 
+										 cloud based system, the topic modelling pipeline had to be self contained and portable to whatever system we procured. Finally, the
+										  system had to be interpretable and easy to run without me, in case I got sick or went on vacation.<br /><br />
+
+										To implement my design I would learn a suite of new technologies. SQL and Microsoft SQL Server Management Studio were needed to explore
+										 and to programmatically query the tables and views my team was developing concurrently to my work. Since we didn’t have a shared
+										  cloud compute resource, the pipeline needed to live as a full Python application which could run on anyone’s standard issue laptop. 
+										  I implemented object oriented and modular design techniques, and found new ways to efficiently store massive datasets of embeddings. <br /><br />
+
+										I practiced my storytelling skills by designing an accessible dashboard for service team leaders, focused entirely tying their key decision
+										 making metrics to the operational level insight of the topics. For added value, the dashboard included some novel visuals describing 
+										 operational efficiency and inter-topic relationships. Most importantly, I learned how to make use of whatever resources were available
+										  to further my team’s stated business goal.<br /><br />
+
+										On deployment the project successfully processed over 400,000 pre-existing documents, and more every day after that. The dashboard was
+										 insightful enough to create a buzz among service delivery leaders. This buzz translated into access to ministry pilots of cloud 
+										 computing systems, which my team used to transform the way IT data is processed in the ministry and make projects like the one I 
+										 worked on feasible at scale. The long term effects will entirely depend on how willing service delivery leaders are to leverage data 
+										 in their decision making process, but I do believe that my team made it as accessible as we possibly could. <br /><br />
+
+										NLP techniques gave me the opportunity to transform my love of technology and clever reasoning techniques into a skill set I can 
+										build a career around. After the main pipeline and dashboard were deployed and functioning, I started researching how community
+										 detection algorithms from graph theory could be used to detect further patterns in the topics found in our dataset. One afternoon, 
+										 a coworker, who was themselves a student at the University of Victoria, told me that if I was this interested in these techniques 
+										 I should consider applying to the Masters of Applied Data Science program. This encouragement prompted me to take the next step in 
+										 my career, where I’ve had the opportunity to learn about so many more fascinating topics in this field.<br /><br />
+										
+								</p>
+							</section>
+							
+
+					</div>
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Location</h3>
+								<p>Victoria, BC | Revelstoke, BC</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">mallett.mack@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://linkedin.com/in/mackenzie-mallett-9b08a9150/" target = "_blank" class="icon brands alt fa-linkedin"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/mack-mallett" target = "_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Mackenzie Mallett 2026</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+		<a href="#wrapper" class="back-to-top scrolly">
+    		<i class="fa fa-chevron-up"></i>
+		</a>
+	</body>
+</html>
