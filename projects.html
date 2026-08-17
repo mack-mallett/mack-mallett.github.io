@@ -107,6 +107,9 @@
 									 intentionally designed to perform community detection in a distributed environment. It does this by calculating a similarity score 
 									 through two database style JOIN operations, and realizes optimizations through a Bloom Filter.<br /><br />
 
+									 <div class="image main"><img src="images/CASS_overview.png" alt="" /></div>
+									<b>Figure 1:</b> System design detailed in the origninal CASS paper (linked above). The triangles produced in the final step are used in the similarity score calculation. <br /><br />
+
 									Computing clusters are not necessarily easy to acquire, especially on a student budget. While I procured an appropriate computing 
 									solution for this project, my colleagues built a prototype implementation designed to run in Google Colab. Google Colab makes it 
 									possible to access a single, high powered, CPU for prototyping. With both steps done, we believed it would be a simple task to run the 
@@ -161,6 +164,7 @@
 									 result confirms that by designing methods with distributed environments in mind, it’s possible to efficiently and accurately perform
 									 tasks like community detection.<br />
 									 <div class="image main"><img src="images/CASS_Results.png" alt="" /></div>
+									 <b>Figure 2:</b> The final results, in seconds, for the single node build vs the 3 node build I set up.
 								</p>
 							</section>
 
