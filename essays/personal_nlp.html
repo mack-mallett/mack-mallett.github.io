@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Mack Mallett's Portfolio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="ecda8dde-94a4-4fd8-b7ee-a3249dced1a8"></script>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Intro -->
+                    <div id="intro">
+                        <h1>Mack Mallett's <br /> Portfolio</h1>
+                        <p>A showcase of my work practicing and thinking about data science.</p>
+                        <ul class="actions">
+                            <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+                        </ul>
+                    </div>
+
+                <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo">Portfolio</a>
+                    </header>
+
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul class="links">
+                            <li><a href="../index.html">About Me</a></li>
+                            <li class="active"><a href="../essays.html">Essays</a></li>
+                            <li><a href="../budget_bot.html">Budget Bot</a></li>
+                        </ul>
+                        <ul class="icons">
+                            <li><a href="https://cloud.umami.is/q/DQjiQ3KQM" target = "_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://cloud.umami.is/q/OvcwoJ2RT" target = "_blank" class="icon brands fa-github"><span target = "_blank" class="label">GitHub</span></a></li>
+                        </ul>
+                    </nav>
+
+                    <div id="main">
+
+                        <!-- Post -->
+                        <section class="post">
+                            <header class="major">
+                                    <a href="../essays.html" class="scrolly button" style="font-size: 1.125rem; padding: 0.75rem 2.25rem; height: auto; line-height: 1.5; margin-bottom: 6rem;">Back to Essays</a>
+                                    <span class="date">July 31, 2026</span>
+                                    <h3 id="NLP">NLP and Me - How Learning the Tools to Analyze Unstructured Text Data Shaped My Early Career</h3>
+                                </header>
+                                <p>In many ways, Natural Language Processing (NLP) defined the early stages of my data science career. 
+                                    My first job out of my undergraduate program was as a marketing specialist for a boutique data science consultancy, which 
+                                    at the time specialized in deriving insights from written survey responses using NLP techniques. The addressable market for a firm 
+                                    like this is quite sophisticated, and potential clients expect marketing assets to include some level of detail about how the service works.
+                                    It was out of this need that I started researching NLP techniques and how to apply them. These clever systems for finding patterns 
+                                    in unstructured data kindled the spark of interest, and I would spend the next five years learning to use these techniques in my own 
+                                    work. The firm I worked for has grown and since pivoted their marketing strategy, but anyone looking for a beginners guide to NLP 
+                                    pipelines can read an archive of my work on the 
+                                       <a href="https://web.archive.org/web/20220523015500/https://www.kaianalytics.com/post/how-to-use-text-analysis-techniques-bring-qualitative-data-to-life" target = "#">Wayback Machine.</a><br /><br />
+                                       
+                                       During the five years I spent learning the technical basics of machine learning I also experimented with careers in a variety of 
+                                       business verticals. These experiences shaped my work ethic, and broadened my perspectives on engineering, property development,
+                                        finance, and government. I learned how to solve business problems; sometimes with technical solutions, but more often with healthy
+                                         teams, strong relationships, and careful attention to the right details. But, as much as I was learning, I found that I was always
+                                          searching for opportunities to get back into the world of data science.<br /><br />
+                                       
+                                       One day the opportunity I had been waiting for appeared in my inbox. A team in British Columbia’s Ministry of Citizen Services, 
+                                       which hosts the Office of the Chief Information Officer (Now Connected Services BC), was looking for a data analyst who could analyze
+                                        unstructured text data, and apply those insights to drive organizational change. It felt like the posting was written for me 
+                                        personally.<br /><br />
+                                       
+                                       This role was transformational for me. The team I joined was genuinely interested in growing the role of data science in the ministry,
+                                        and using findings as a catalyst to improve the IT service experience of our clients across government. Our main source of fresh 
+                                       insights would come from unstructured text data and our ability to package these insights as effective decision making tools would 
+                                       define our success as a team. <br /><br />
+                                        
+                                        I felt this was the perfect problem for NLP and text analysis techniques. I was extremely lucky, my team members and my boss took a
+                                         risk on me, and gave me the freedom to experiment and to learn.  <br /><br />
+                                        
+                                        The principal NLP technique I used in this role is called topic modelling. Topic modelling is an NLP term for unsupervised clustering 
+                                        techniques applied specifically to text data. This technique allows analysts to segment collections of documents based on semantic
+                                         similarity. Segments are then reviewed by an analyst, or an LLM, to derive the key themes of that segment. Topic modelling is
+                                          especially powerful when analyzing thousands or hundreds of thousands of chunks of text, like the kind you get from feedback 
+                                          surveys or technician notes. <br /><br />
+
+                                        One of the most popular topic modelling libraries for Python is 
+                                        <a href="https://maartengr.github.io/BERTopic/algorithm/algorithm.html" target = "#">BERTopic</a>, a transformer based approach taking
+                                         advantage of many of the same ideas underpinning modern LLM's. The general pipeline goes something like this: <br />
+                                        <ol>
+                                            <li>Chunks of text are vectorized using a transformer. This could be an open source model like BERT, a more specialized model
+                                                 from Hugging Face, or it could be a proprietary model specifically trained on an organization's documents.</li>
+                                            <li>Obligatory dimensionality reduction. Natural language in particular can have enormous feature sets, called vocabularies. 
+                                                These vocabularies will invoke the curse of dimensionality if left unchecked.</li>
+                                            <li>An unsupervised clustering algorithm. There are many choices for this, but common algorithms include K-Means, density based 
+                                                clustering algorithms, and hierarchical based clustering. BERTopic uses an algorithm called HDBSCAN (Hierarchical Density
+                                                 Based Spatial Clustering of Applications with Noise), which allows for clusters of varying densities.</li>
+                                            <li>Transforming the clusters back into natural language so they can be interpreted. This involves building a vocabulary for
+                                                 each cluster, and determining which words are the most representative of that cluster.</li>
+                                        </ol>
+                                        This project reignited my passion for learning. The pipeline comes as a complete package, but I still wanted to understand the literature
+                                         behind each step. I found myself comparing alternative clustering techniques, and felt the satisfaction of understanding why getting clusters of varying densities from
+                                         <a href="https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html" target="#">HDBSCAN matters.</a> I didn't realize it, but I was 
+                                         experienceing the beginning of a transformation from my role as a consumer of models into a designer of data analysis systems.<br /><br />
+                                        
+                                        Fancy models don't mean much if people don't understand what they're saying. For service delivery teams to consider our findings 
+                                        then they would have to be accessible to leaders, at their leisure. In our ministry PowerBI was the common format for this. As a 
+                                         visualization platform PowerBI supports some minor data transformations, but nothing at the scale needed to host a topic modelling 
+                                         algorithm. PowerBI is best when it sits on top of cloud compute (like Azure or AWS), but as a small team we didn’t have access to 
+                                         those resources. To solve this problem, and get our insights on the screens of team leaders, I took on a new challenge of designing
+                                          and implementing a fully connected data pipeline native to the resources we actually had.<br /><br />
+
+                                        This project became the vehicle for some of the most important technical learning I would do in this early stage of my career. The design had 
+                                        to meet specific requirements, specifically ingesting data from an SQL server, processing unstructured text, computing topics, and
+                                         serving these topics up to the existing dashboard ecosystem. Since our goal was to use these insights to secure the resources for a 
+                                         cloud based system, the topic modelling pipeline had to be self contained and portable to whatever system we procured. Finally, the
+                                          system had to be interpretable and easy to run without me, in case I got sick or went on vacation.<br /><br />
+
+                                        To implement my design I would learn a suite of new technologies. SQL and Microsoft SQL Server Management Studio were needed to explore
+                                         and to programmatically query the tables and views my team was developing concurrently to my work. Since we didn’t have a shared
+                                         cloud compute resource, the pipeline needed to live as a full Python application which could run on anyone’s standard issue laptop. 
+                                         I implemented object oriented and modular design techniques, and learned new ways to efficiently store massive embeddings as .parquet files. <br /><br />
+
+                                        I practiced my storytelling skills by designing an accessible dashboard for service team leaders, focused entirely on tying their key decision
+                                         making metrics to the operational level insight of the topics. For added value, the dashboard included some novel visuals describing 
+                                         operational efficiency and inter-topic relationships. Most importantly, I learned how to make use of whatever resources were available
+                                          to further my team’s stated business goal.<br /><br />
+
+                                        On deployment the project successfully processed over 400,000 pre-existing documents, and more every day after that. The project was
+                                         novel enough to create a buzz among service delivery leaders. This buzz translated into access to ministry pilots of cloud 
+                                         computing systems, which my team used to transform the way IT data is processed in the ministry and make systems like the one I 
+                                         worked on feasible at scale. The long term effects will entirely depend on how willing service delivery leaders are to leverage data 
+                                         in their decision making process, but I do believe that my team made it as accessible as we possibly could. <br /><br />
+
+                                        NLP techniques gave me the opportunity to transform my love of technology and clever reasoning techniques into a skill set I can 
+                                        build a career around. After the main pipeline and dashboard were deployed and functioning, I started researching how community
+                                         detection algorithms from graph theory could be used to detect further patterns in the topics found in our dataset. One afternoon, 
+                                         a coworker, who was themselves a student at the University of Victoria, told me that if I was this interested in these techniques 
+                                         I should consider applying to the Masters of Applied Data Science program. This encouragement prompted me to take the next step in 
+                                         my career, where I’ve had the opportunity to learn about so many more fascinating topics in this field.<br /><br />
+                                        
+                                </p>
+                            </section>
+                            
+
+                    </div>
+                <!-- Footer -->
+                    <footer id="footer">
+                        <section class="split contact">
+                            <section class="alt">
+                                <h3>Location</h3>
+                                <p>Victoria, BC | Revelstoke, BC</p>
+                            </section>
+                            <section>
+                                <h3>Email</h3>
+                                <p>Message me on LinkedIn!</p>
+                            </section>
+                            <section>
+                                <h3>Social</h3>
+                                <ul class="icons alt">
+                                    <li><a href="https://linkedin.com/in/mackenzie-mallett-9b08a9150/" target = "_blank" class="icon brands alt fa-linkedin"><span class="label">Instagram</span></a></li>
+                                    <li><a href="https://github.com/mack-mallett" target = "_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </footer>
+
+                <!-- Copyright -->
+                    <div id="copyright">
+                        <ul><li>&copy; Mackenzie Mallett 2026</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+                    </div>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="../assets/js/jquery.min.js"></script>
+            <script src="../assets/js/jquery.scrollex.min.js"></script>
+            <script src="../assets/js/jquery.scrolly.min.js"></script>
+            <script src="../assets/js/browser.min.js"></script>
+            <script src="../assets/js/breakpoints.min.js"></script>
+            <script src="../assets/js/util.js"></script>
+            <script src="../assets/js/main.js"></script>
+        <a href="#wrapper" class="back-to-top scrolly">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </body>
+</html>
