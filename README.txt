@@ -1,4 +1,4 @@
-This is the personal, professional portfolio of Mackenzie Mallett. 
+This is the personal, professional portfolio of Mackenzie Mallett. You can view it at https://mack-mallett.github.io
 The projects and work experience detailed on this website are intended to showcase Mackenzie's professional accomplishments to 
 interested parties. The HTML template for this webiste came from html5up.net, and all relevant citations are included below. 
 While the original template is Free for personal and commercial use under the CCA 3.0 license (detailed in LICENSE.txt), 
