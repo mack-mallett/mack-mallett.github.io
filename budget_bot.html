@@ -47,9 +47,9 @@
 							<section class="post">
 								<header class="major">
 									<h1>Budget Bot</h1>
-									<p>Budget Bot is a personal project which I use to classify personal banking transactions, plan for my future, and practice implementing data analysis systems. 
-										I'm currently developing demo videos and technical papers to describe the various features and engineering choices.
-									In the meantime, you can view the project on my <a href="https://github.com/mack-mallett/Cash-Flows" target = "#">GitHub</a>.  </p>
+									<p>Budget Bot is a personal project which I use to practice implementing pattern recognition systems and classify my own personal banking transactions. 
+										Think of this page as a live engineering journal, where I'm constantly making changes to improve performance or try new techniques from my research. You can follow my progress using the dates attached to each post.
+										To inspect the project as it currently stands, check out my <a href="https://github.com/mack-mallett/Cash-Flows" target = "#">GitHub</a></p>
 								</header>
 									
 									<h4 id="About Budget Bot">About</h4>
@@ -60,9 +60,26 @@
 				
 									<b>Where:</b> Using the platform is a sit-down activity, just like other budgeting tasks. The mobile friendly website is really for tablet users and users without access to their laptop.<br /><br />
 				
-									<b>When:</b> I started implementing this system for personal use as far back as 2021. This project exists in a time where Gen-Z users are moving to digital wealth management platforms like Wealthsimple, and most Banks have some version of this software (although I don't know anyone who actually uses it). There is speculation of open banking laws in the news, which would be good for a platform like this to disrupt the existing banking apps with improved user experiences.<br /><br />
+									<b>When:</b> I started implementing this system for personal use as far back as 2021. This project exists in a time where Gen-Z users are moving to digital wealth management platforms like Wealthsimple, and most Banks have some version of this software (although I know many people find these services frustrating to use). There is speculation of open banking laws in the news, which would be good for a platform like this to disrupt the existing banking apps with improved user experiences.<br /><br />
 				
-									<b>Why:</b> Practice implementing ML systems into web apps. Grow as an engineer.<br /><br />
+									<b>Why:</b> Practice implementing ML systems in web apps. Grow as an engineer.<br /><br />
+
+									<h4 id="Current">What am I working on now?</h4>
+
+									Budget Bot is currently in the MVP stage. The interactive streamlit interface allows me to peform the core transaction classification and spending analysis workflows without cumbersome manual tasks. This is a huge improvement from the original build, where I used a command line menu to control the app and had to correct missclassified transactions in Excel.
+									 Transaction classificaton is performed with a Multinomial Naive Bayes classifier from SKLearn. MultinomialNB is a good MVP classifier because it can handle sparse dimension spaces, unscaled features, and is by design an incremental learning algorithm. 
+									 However, MultinomialNB currently fluctuates between 80%-90% accuracy, which leaves plently of room for improvement. <br /><br />
+
+									 Currently I'm focused on engineering the preprocessing pipeline. This is a logical next step because it will allow me to test higher power classifiers. The dataset has three main challenges:
+									 <ul>
+										<li>Tokenizing Point of Sale ID's tends to lead to very large and sparse feature spaces. This means that parametric classifiers (based on an estimate of the analytical distribution) need many more samples to learn the feature distributions, and can cause non-parametric classifiers (neural nets, k-means) to overfit to denser features. </li>
+										<li>Debit and Credit features have heavy tailed distribution due to big purchases (or income windfalls). Some spending categories have high skew (a third order moment, past mean and variance). This is problamatic for standard feature scaling methods like z-score (which only considers mean and variance) or min-max, because large outliers will force the majority of values to be pushed to one side of the normalized distribution.</li>
+										<li>The data is evolving as I shop with new vendors. This is a problem for the vocabulary building techniques I might use on the Point of Sale ID, and for estimating sufficient statistics used to normalize Debit and Credit amounts.</li>
+									 </ul>
+									 I expect to solve the Debit and Credit sclaing issues with a non-linear scaling technique, perhaps a quantile-based sigmoid normalization. The Point of Sale ID feature is more challenging. The evolving nature of the dataset complicates standard dimensionality reduction techniques like Fisher-Linear Discriminent or UMAP. I'm interested in what the field of information theory can do for this challenge. 
+									 I'll be researching the possiblility of compression codes and if they retain the concept of distance needed for class seperation. Stay tuned!
+
+
 							</section>
 
 					</div>
